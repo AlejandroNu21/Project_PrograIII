@@ -16,12 +16,12 @@ public class ConexionAMYSQL {
     public Connection getConecction (){
     try {
         
-        String url = "jdbc:mysql://localhost:3306/BD";
-        String user = "root";
-        String password ="roor";
+        String url = "jdbc:mysql://localhost:3306/Clase";
+        String user = "Nuñez";
+        String password ="Alexxkr2120sv";
         
         ConnectionBD=DriverManager.getConnection(url,user,password);
-        
+        System.out.println("Conexion exitosa");
         
     }catch (Exception e){
         JOptionPane.showMessageDialog(null, "Error"+e.toString());

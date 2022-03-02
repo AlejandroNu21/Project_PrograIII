@@ -9,7 +9,11 @@ import com.alejandro.BD.ConexionAMYSQL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,10 +47,31 @@ public class Estudiantes {
            
    
         }catch (Exception e){
-            
+            System.out.println(e.toString());
         }
-     return listado; 
+        
+         return listado; 
       
         
     }
+    
+    public void AddEstudiantes(Estudiante es){
+          try {
+              CallableStatement cb = conexion.prepareCall("insert into "
+                      + "estudiante (Nombre,Apellido) values('"+es.getNombre()+"','"+es.getApellido()+"')");
+              cb.execute();
+              
+              JOptionPane.showMessageDialog(null, "Persona Agregada","Mensaje sistems",1);
+              
+          } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error"+ex.toString(),"Mensaje sistems",1);
+          }
+        
+        
+    }
+
+    public void AddEstudiante(Estudiante es) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }
