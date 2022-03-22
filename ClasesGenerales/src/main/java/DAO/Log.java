@@ -4,39 +4,42 @@
  */
 package DAO;
 
-import Entidades.Estudiante;
+import Entidades.User;
 import com.alejandro.BD.ConexionAMYSQL;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author COREI5 10TH GEN
  */
-public class Estudiantes {
-      ConexionAMYSQL con = new ConexionAMYSQL();
-    Connection conexion = con.getConecction();
-
-        public ArrayList<Estudiante> ListadoEstudiantes() {
-        ArrayList<Estudiante> listado = null;
+public class Log {
+    
+     ConexionAMYSQL con = new ConexionAMYSQL();
+      Connection conexion = con.getConecction();
+      
+    /**
+     *
+     * @return
+     */
+    public ArrayList<User> ListadoUsuario() {
+        ArrayList<User> listado = null;
 
         try {
-            listado = new ArrayList<Estudiante>();
+            listado = new ArrayList<User>();
 
-            CallableStatement cb = conexion.prepareCall("{call SP_S_ESTUDIANTE()}");
+            CallableStatement cb = conexion.prepareCall("{call SP_S_LOGIN()}");
             ResultSet resultado = cb.executeQuery();
 
             while (resultado.next()) {
                 //Llamar a el objeto de entidades.
-                Estudiante es = new Estudiante();
-                es.setNombre(resultado.getString("Nombre"));
-                es.setApellido(resultado.getString("Apellido"));
+                User es = new User();
+                es.setUsuario(resultado.getString("Usuario"));
+                es.setContra(resultado.getString("Contra"));
                 listado.add(es);
             }
 
@@ -45,21 +48,21 @@ public class Estudiantes {
         }
 
         return listado;
-
-    }
     
-    public void AddEstudiante(Estudiante es){
+}
+       
+       public void AddUser(User es){
     
         try {
-            CallableStatement cb = conexion.prepareCall("{call SP_I_ESTUDIANTE(?,?)}");
-            cb.setString("PNombre", es.getNombre());
-            cb.setString("PApellido", es.getApellido());
+            CallableStatement cb = conexion.prepareCall("{call SP_S_LOGIN(?,?)}");
+            cb.setString("PUser", es.getUsuario());
+            cb.setString("PPassword", es.getContra());
             cb.execute();
             
-            JOptionPane.showMessageDialog(null, "Persona Agregada","Mensje sistems",1);
+            JOptionPane.showMessageDialog(null, "User Agregado","Mensje sistems",1);
         } catch (SQLException ex) {
               JOptionPane.showMessageDialog(null, "Error "+ex.toString(),"Mensjae sistems",1);
         }
-    
 }
+       
 }

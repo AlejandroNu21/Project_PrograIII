@@ -5,6 +5,7 @@
 package com.alejandro.clasesgenerales;
 
 import DAO.Estudiantes;
+import DAO.Notas;
 import Entidades.Estudiante;
 import com.alejandro.BD.ConexionAMYSQL;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class FrmConsultasBD extends javax.swing.JFrame {
      */
     public FrmConsultasBD() {
         initComponents();
+        cargar();
     }
 
     /**
@@ -55,7 +57,7 @@ public class FrmConsultasBD extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(153, 102, 0));
+        jTable1.setBackground(new java.awt.Color(51, 153, 255));
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setFont(new java.awt.Font("Dubai Light", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -79,6 +81,7 @@ public class FrmConsultasBD extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jLabel1.setText("        Datos");
 
         jButton3.setText("Insert");
@@ -100,31 +103,31 @@ public class FrmConsultasBD extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(jButton2)
-                        .addGap(56, 56, 56)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(8, 155, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel2)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(144, 144, 144))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(269, 269, 269)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,16 +140,23 @@ public class FrmConsultasBD extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 76, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(2, 2, 2)))
+                        .addContainerGap())))
         );
 
         pack();
@@ -161,61 +171,48 @@ public class FrmConsultasBD extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         String titulos[] = {"NOMBRE","APELLIDO"};
-        //Ejemplo de Arreglo
-        Double numero[] = new Double[3];
-        
-        
-        
-        DefaultTableModel df = new DefaultTableModel(null,titulos);
-        
-        Estudiantes es = new Estudiantes();
-      
-        ArrayList <Estudiante> listar = es.ListadoEstudiantes();
-        
-        Iterator iterador = listar.iterator();
-        
-        String fila[] = new String[3];
-        
-        while(iterador.hasNext()){
-            
-            Estudiante estBucle = (Estudiante)iterador.next();
-            fila[0] = estBucle.getNombre();
-            fila[1] = estBucle.getApellido();
-            df.addRow(fila);
-            
-        }
-        
-        jTable1.setModel(df);
+//         String titulos[] = {"NOMBRE","NOMBRE MATERIA"};
+//        //Ejemplo de Arreglo
+//        Double numero[] = new Double[3];
+//        
+//        
+//        
+//        DefaultTableModel df = new DefaultTableModel(null,titulos);
+//        
+//        Estudiantes es = new Estudiantes();
+//      
+//        ArrayList <Estudiante> listar = es.ListadoEstudiantes();
+//        
+//       // Iterator iterador = listar.iterator();
+//        
+//        String fila[] = new String[3];
+//       
+//        
+//            for(var iteracion : es.ListadoEstudiantes()){
+//            
+//          //  Estudiante estBucle = new Estudiante();
+//            fila[0] = iteracion.getNombre();
+//            fila[1] = iteracion.getApellido();
+//            df.addRow(fila);
+//            
+//        }
+//        
+//        jTable1.setModel(df);
     }//GEN-LAST:event_jButton2ActionPerformed
 
   public void cargar(){
       
-      String titulos[] = {"NOMBRE","APELLIDO"};
-        //Ejemplo de Arreglo
-        Double numero[] = new Double[3];
-        
-        
-        
-        DefaultTableModel df = new DefaultTableModel(null,titulos);
-        
-        Estudiantes es = new Estudiantes();
-      
-        ArrayList <Estudiante> listar = es.ListadoEstudiantes();
-        
-        Iterator iterador = listar.iterator();
-        
-        String fila[] = new String[3];
-        
-        while(iterador.hasNext()){
-            
-            Estudiante estBucle = (Estudiante)iterador.next();
-            fila[0] = estBucle.getNombre();
-            fila[1] = estBucle.getApellido();
+      String titulos[] = {"NOMBRE", "NOMBRE MATERIA"};
+        DefaultTableModel df = new DefaultTableModel(null, titulos);
+        Notas es = new Notas();
+        String fila[] = new String[2];
+        for (var iteracion : es.ListadoEstudiantesConNotas() ){
+          ///  Estudiante estBucle = (Estudiante) iterador.next();
+            fila[0] = iteracion.getNombre();
+            fila[1] = iteracion.getNombreMateria();
             df.addRow(fila);
-            
         }
-        
+
         jTable1.setModel(df);
       
   }
@@ -230,7 +227,7 @@ public class FrmConsultasBD extends javax.swing.JFrame {
         
         es.setNombre(txtNombre.getText());
         es.setApellido(txtApellido.getText());
-        esDao.AddEstudiantes(es);
+        esDao.AddEstudiante(es);
         cargar();
         
     }//GEN-LAST:event_jButton3ActionPerformed

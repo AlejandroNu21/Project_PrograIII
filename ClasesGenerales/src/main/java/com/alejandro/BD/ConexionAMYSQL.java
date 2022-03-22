@@ -21,7 +21,7 @@ public class ConexionAMYSQL {
         String password ="Alexxkr2120sv";
         
         ConnectionBD=DriverManager.getConnection(url,user,password);
-        System.out.println("Conexion exitosa");
+        System.out.println("Conexion Exitosa");
         
     }catch (Exception e){
         JOptionPane.showMessageDialog(null, "Error"+e.toString());

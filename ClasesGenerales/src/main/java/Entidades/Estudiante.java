@@ -8,7 +8,7 @@ package Entidades;
  *
  * @author COREI5 10TH GEN
  */
-public class Estudiante {
+public class Estudiante extends Materia{
     
     String Nombre;
     String Apellido;
@@ -27,6 +27,14 @@ public class Estudiante {
 
     public void setApellido(String Apellido) {
         this.Apellido = Apellido;
+    }
+
+    public void setUser(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setPassword(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }
